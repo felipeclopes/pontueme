@@ -1,0 +1,48 @@
+<div class="account-container">
+  
+  <div class="content clearfix">
+    
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+    
+      <h1>Entrar</h1>		
+      
+      <div class="login-fields">
+        
+        <p>Entrar com sua conta registrada:</p>
+        
+        <div class="field">
+          <label for="email">Email:</label>
+          <%= f.email_field :email, :class => 'login username-field' %>
+        </div> <!-- /field -->
+        
+        <div class="field">
+          <label for="senha">Senha:</label>
+          <%= f.password_field :password, :class => 'login password-field' %>
+        </div> <!-- /password -->
+        
+      </div> <!-- /login-fields -->
+      
+      <div class="login-actions">
+                  
+        <%= f.submit "Entrar", :class => "button btn btn-warning btn-large" %>
+        
+      </div> <!-- .actions -->
+      
+    <% end %>
+    
+  </div> <!-- /content -->
+  
+</div> <!-- /account-container -->
+
+<div class="login-extra">
+  Não tem uma conta? Clique em <%= link_to "Registrar", new_user_registration_path %>
+</div> <!-- /login-extra -->
+
+<script src="../assets/theme/jquery-1.7.2.min.js"></script>
+
+<script src="../assets/theme/bootstrap.js"></script>
+<script src="../assets/theme/base.js"></script>
+
+<script src="../assets/theme/signin.js"></script>
+
+

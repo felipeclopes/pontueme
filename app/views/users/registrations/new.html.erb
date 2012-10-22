@@ -1,0 +1,50 @@
+<div class="account-container register">
+  
+  <div class="content clearfix">
+  
+  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+
+  <h1>Registrar</h1>
+  
+  <div class="login-fields">
+        
+    <p>Crie sua conta gratuita:</p>
+    <%= devise_error_messages! %> 
+    
+    <div class="field">
+      <label for="email">Email:</label>
+      <%= f.email_field :email, :class => 'login', :placeholder => 'Email' %>
+    </div> <!-- /field -->
+    
+    <div class="field">
+      <label for="senha">Senha:</label>
+      <%= f.password_field :password, :class => 'login', :placeholder => 'Senha' %>
+    </div> <!-- /field -->    
+    
+    <div class="field">
+      <label for="conirmacao">Confirmacao:</label>
+      <%= f.password_field :password_confirmation, :class => 'login', :placeholder => 'Confirmacao' %>
+    </div> <!-- /field -->
+        
+    </div> <!-- /login-fields -->
+    
+    <div class="login-actions">             
+      <p><%= f.submit "Registrar", :class => "button btn btn-primary btn-large" %></p>      
+    </div> <!-- .actions -->
+
+  </div>
+  
+  <% end %>
+  
+</div>
+
+<div class="login-extra">
+  Ja tem uma conta? <%= link_to "Entrar", new_user_session_path %>
+</div> <!-- /login-extra -->
+
+<script src="../assets/theme/jquery-1.7.2.min.js"></script>
+
+<script src="../assets/theme/bootstrap.js"></script>
+<script src="../assets/theme/base.js"></script>
+
+<script src="../assets/theme/signin.js"></script>

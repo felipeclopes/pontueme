@@ -1,0 +1,14 @@
+<div class="subnavbar">
+	<div class="subnavbar-inner">
+		<div class="container">
+			<ul class="mainnav">				
+				<li class="active">
+					<a href="/user_dashboard/index">
+						<i class="icon-home"></i>
+						<span>Pontuação</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

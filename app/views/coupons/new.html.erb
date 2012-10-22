@@ -1,0 +1,102 @@
+<%= render :partial=>"shared/subNavigation" %>
+
+<div class="main">
+	
+	<div class="main-inner">
+
+		<div class="container">
+	
+		  <div class="row">
+			
+			<div class="span12">
+				
+				<div class="widget">
+						
+					<div class="widget-header">
+						<i class="icon-th-large"></i>
+						<h3>Coupon</h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content">
+						
+						<div class="pricing-plans plans-3">
+													
+						<div class="plan-container">
+							<div class="plan">
+								&nbsp;
+							</div>
+						</div>
+						
+						<div class="plan-container">
+						
+						<%= form_for @coupon do |c| %> 
+						
+							<div class="plan blue">
+								<div class="plan-header">
+									
+									<div class="plan-title">
+										<%= @benefit.name %>		
+									</div> <!-- /plan-title -->
+									
+									<div class="plan-price">
+										<%= @coupon.points %><span class="term">Pontos</span>
+									</div> <!-- /plan-price -->
+									
+								</div> <!-- /plan-header -->	        
+								
+								<div class="plan-features">
+									<ul>
+										<li><%= @benefit.description %></li>
+										<li><h2><%= @coupon.code %></h2></li>
+									</ul>
+								</div> <!-- /plan-features -->
+								
+								<div class="plan-actions">	
+								<center>
+									<%= c.hidden_field :benefit_id, :value => @coupon.benefit_id %>
+									<%= c.hidden_field :user_id, :value => @coupon.user_id %>
+									<%= c.hidden_field :points, :value => @coupon.points %>
+									<%= c.hidden_field :code, :value => @coupon.code %>
+								
+									<%= c.submit :value => "Confirmar", :class => "btn btn-coupon btn-primary" %>
+								</center>
+								</div> <!-- /plan-actions -->								
+					
+							</div> <!-- /plan -->
+							
+						<% end %>
+						</div> <!-- /plan-container -->
+						
+						<div class="plan-container">
+							<div class="plan">
+							</div>
+						</div>
+				
+						</div> <!-- /pricing-plans -->
+						
+					</div> <!-- /widget-content -->
+						
+				</div> <!-- /widget -->					
+				
+			</div> <!-- /span12 -->     	
+			
+			
+		  </div> <!-- /row -->
+	
+		</div> <!-- /container -->
+		
+	</div> <!-- /main-inner -->
+	
+</div> <!-- /main -->
+	
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+	<script src="./js/jquery-1.7.2.min.js"></script>
+
+	<script src="./js/bootstrap.js"></script>
+	<script src="./js/base.js"></script>
+
+  </body>
+</html>

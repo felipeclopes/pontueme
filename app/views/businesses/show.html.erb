@@ -1,0 +1,109 @@
+<br />
+
+<div class="main">
+	
+	<div class="main-inner">
+
+		<div class="container">
+	
+		  <div class="row">
+			
+			<div class="span4">
+				
+				<div class="widget-content">
+					
+					<p>
+					<h2><%= @business.name %></h2>
+					<i><%= @business.category %></i>
+					</p>
+					
+					<p>
+						<i class="icon-map-marker"></i>
+						<%= @business.address %>
+					</p>
+					
+					<p>
+						<i class="icon-home"></i>
+						<a href='<%= @business.website %>'><%= @business.website %></a>
+					</p>
+						
+				</div>
+			
+			</div>
+			
+			<div class="span8">
+				
+				<div class="widget">
+						
+					<div class="widget-header">
+						<i class="icon-th-large"></i>
+						<h3>Benefícios</h3>
+					</div> <!-- /widget-header -->
+					
+					<div class="widget-content">
+						
+						<% unless @business.benefits.count <= 0  %>
+						
+						<div class="pricing-plans plans-<%= @business.benefits.count > 4 ? @business.benefits.count : 4 %>">
+						
+						<% @business.benefits.each do |b| %>							
+						<div class="plan-container">
+							<div class="plan">
+								<div class="plan-header">
+									
+									<div class="plan-title">
+										<%= b.name %>		
+									</div> <!-- /plan-title -->
+									
+									<div class="plan-price">
+										<%= b.checkins_needed %><span class="term">Pontos</span>
+									</div> <!-- /plan-price -->
+									
+								</div> <!-- /plan-header -->	        
+								
+								<div class="plan-features">
+									<ul>
+										<li><%= b.description %></li>										
+									</ul>
+								</div> <!-- /plan-features -->
+								
+								<div class="plan-actions">	
+									&nbsp
+								</div> <!-- /plan-actions -->								
+					
+							</div> <!-- /plan -->
+						</div> <!-- /plan-container -->
+						<% end %>
+				
+						</div> <!-- /pricing-plans -->
+				
+						<% end %>
+						
+					</div> <!-- /widget-content -->
+						
+				</div> <!-- /widget -->					
+				
+			</div> <!-- /span12 -->     	
+			
+			
+		  </div> <!-- /row -->
+	
+		</div> <!-- /container -->
+		
+	</div> <!-- /main-inner -->
+	
+</div> <!-- /main -->
+	
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+	<script src="../assets/theme/jquery-1.7.2.min.js"></script>
+
+	<script src="../assets/theme/bootstrap.js"></script>
+	<script src="../assets/theme/base.js"></script>
+
+  </body>
+</html>
+
+<%= render :partial=>"shared/footer" %>

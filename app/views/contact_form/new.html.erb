@@ -1,0 +1,51 @@
+<div class="main">
+	<div class="main-inner">
+		<div class="container">
+			</br>
+			<div class="row">
+				<div class="span8">
+					<div class="widget">
+						<div class="widget-header">
+							<i class="icon-user"></i>
+							<h3>Contato</h3>
+						</div>
+						<div class="widget-content">
+							<%= form_tag '/contact_form/create', :class => "form-horizontal" %>
+								<div class="control-group">											
+									<label class="control-label" for="email">Email</label>
+									<div class="controls">
+										<%= email_field_tag "email", :class => 'input-large' %>
+									</div> <!-- /controls -->				
+								</div>
+
+								<div class="control-group">											
+									<label class="control-label" for="email">Nome</label>
+									<div class="controls">
+										<%= text_field_tag "name", :class => 'input-large' %>
+									</div> <!-- /controls -->				
+								</div>
+
+								<div class="control-group">											
+									<div class="controls">
+										<%= text_area_tag "body", :class => 'input-large', :rows => 10 %>
+									</div> <!-- /controls -->				
+								</div>
+
+								<div class="form-actions">
+									<%= submit_tag "Enviar", :class => 'btn btn-primary' %>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="../assets/theme/jquery-1.7.2.min.js"></script>
+<script src="../assets/theme/excanvas.min.js"></script>
+<script src="../assets/theme/bootstrap.js"></script>
+<script src="../assets/theme/base.js"></script>
+
+<%= render :partial=>"shared/footer" %>

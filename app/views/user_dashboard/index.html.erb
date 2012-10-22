@@ -1,0 +1,188 @@
+<br />
+
+<div class="main">
+	<div class="main-inner">
+		<div class="container">
+
+			<% if false #unless current_user.password_changed %>
+
+			<div class="hero-unit">
+				<div class="row">
+					<h2>Nunca mudou sua senha? Mude <a class='h1-pontueme' href='users/edit'>aqui</a><h2>
+				</div>
+			</div>
+
+			<% end %>
+
+			<% unless @checkins.count > 0  %>
+
+			<div class="hero-unit">
+				<div class="row">
+					<h2>Você ainda não pontuou em nenhum estabalecimento credenciado ao <span class='h1-pontueme'>Pontue.me</span><h2>
+				</div>
+			</div>
+
+			<% else %>
+
+			<div class="row">
+				<div class="span6">
+					<div class="widget">
+						<div class="widget-header">
+							<i class="icon-signal"></i>
+							<h3>Geral</h3>
+						</div>
+						<div class="widget-content">
+							<div class="stats">
+								<div class="stat">
+									<span class="stat-value"><%= @checkins.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
+									Total
+								</div>
+								<div class="stat">
+									<span class="stat-value"><%= @checkins.select{|c| c.created_at.to_date > 7.days.ago.to_date}.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
+									7 dias
+								</div>
+								<div class="stat">
+									<span class="stat-value"><%= @checkins.select{|c| c.created_at.to_date > Date.today}.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
+									Hoje
+								</div>
+							</div>
+							
+							<div id="chart-stats" class="stats">
+								<div class="stat stat-chart">
+									<div id="donut-chart" class="chart-holder"></div>
+								</div>
+								<div class="stat stat-time">
+									<span class="stat-value"><%= @ubps.map{|c| c.total_points}.inject{|sum,x| sum + x }.presence || 0 %></span>
+									Total de pontos
+								</div> <!-- /substat -->
+							</div>
+						</div>
+					</div>
+					
+					<div class="widget">
+						<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>Últimos Pontos</h3>
+						</div>
+						<div class="widget-content">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Estabelecimento</th>
+										<th>Hora</th>
+										<th>Pontos</th>
+									</tr>
+								</thead>
+								<tbody>
+									<% @checkins.take(10).each do |c| %>
+										<tr>
+											<td><%= c.business.name %></td>
+											<td><%= c.created_at %></td>
+											<td><%= c.points %></td>
+										</tr>
+									<% end %>
+								</tbody>								
+							</table>							
+						</div>
+					</div>
+
+				</div>
+				<div class="span6">
+				
+					<div class="widget">
+						<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>Estabelecimentos Acessados</h3>
+						</div>
+						<div class="widget-content">							
+							<div class="shortcuts">
+								<% @business.each do |b| %>
+									<% @ubp = @ubps.select{|u| u.business_id == b.id}.first %>
+									<% unless @ubp.nil? %>
+									<a href="/businesses/<%= b.id%>" class="shortcut">										
+										<i class="shortcut-icon icon-list-alt"></i>										
+										<span class="shortcut-label"><%= b.name %></span>
+										Pontos: <%= @ubp.total_points %>
+									</a>
+									<% end %>
+								<% end %>
+							</div>							
+						</div>
+					</div>
+
+					<% if @coupons.count > 0  %>
+					
+					<div class="widget">
+						<div class="widget-header">
+							<i class="icon-th-list"></i>
+							<h3>Benefícios Trocados</h3>
+						</div>
+						<div class="widget-content">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Estabelecimento</th>
+										<th>Benefício</th>
+										<th>Código</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<% @coupons.each do |c| %>
+										<tr>
+											<td><%= c.benefit.business.name %></td>
+											<td><%= c.benefit.name %></td>
+											<td><%= c.code %></td>
+											<td><a href='/coupons/show/<%= c.id %>'>Ver</a></td>
+										</tr>
+									<% end %>
+								</tbody>								
+							</table>							
+						</div>
+					</div>
+
+					<% end %>
+				
+				</div>
+			</div>
+
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script src="../assets/theme/jquery-1.7.2.min.js"></script>
+<script src="../assets/theme/excanvas.min.js"></script>
+
+<script src="../assets/theme/jquery.flot.js"></script>
+<script src="../assets/theme/jquery.flot.pie.js"></script>
+<script src="../assets/theme/jquery.flot.orderBars.js"></script>
+<script src="../assets/theme/jquery.flot.resize.js"></script>
+
+<script src="../assets/theme/bootstrap.js"></script>
+<script src="../assets/theme/base.js"></script>
+
+<script type="text/javascript">
+
+$(function () {
+
+	var data = [];
+	data[0] = {label: "Pontuados", data: <%= @checkins.count > 0 ? @checkins.map{|c| c.points}.inject{|sum,x| sum + x } : 0 %>};
+	data[1] = {label: "Resgatados", data: <%= @coupons.count > 0 ? @coupons.map{|c| c.points}.inject{|sum,x| sum + x } : 0 %>};
+
+	$.plot($("#donut-chart"), data,
+	{
+		colors: ["#F90", "#222"],
+			series: {
+				pie: { 
+					innerRadius: 0.5,
+					show: true
+				}
+			}
+	});
+});
+
+</script>
+
+<%= render :partial=>"shared/footer" %>
+
