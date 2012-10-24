@@ -24,6 +24,7 @@ gem 'omniauth-facebook'
 
 gem "friendly_id", "~> 4.0.1"
 gem 'execjs'
+gem 'therubyracer'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
