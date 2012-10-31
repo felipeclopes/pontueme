@@ -3,9 +3,9 @@
 one:
   user_id: 1
   business_id: 1
-  total_points: 1
+  points: 1
 
 two:
   user_id: 1
   business_id: 1
-  total_points: 1
+  points: 1

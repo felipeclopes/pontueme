@@ -28,11 +28,9 @@ class Checkin < ActiveRecord::Base
 
 	def self.sum_points(user, card, business)
 		unless user.nil?
-			return UserBusinessPoints.find_by_user_id_and_business_id(user, business).total_points
+			return user.user_business_points.where(:business == business).sum{|p| p.points}
 		else 
-			unless card.nil?
-				return CardBusinessPoints.find_by_card_id_and_business_id(card, business).points
-			end
+			return card.card_business_points.where(:business == business).sum{|p| p.points}
 		end
 
 		return 0
@@ -44,7 +42,7 @@ class Checkin < ActiveRecord::Base
 			unless self.user_id.nil?
 				ubp = UserBusinessPoints.find_by_business_id_and_user_id(self.business_id, self.user_id)
 				if ubp.nil?
-					ubp = UserBusinessPoints.new(user: self.user, business: self.business, total_points:0)
+					ubp = UserBusinessPoints.new(user: self.user, business: self.business, points:0)
 				end
 				ubp.add_checkin(self)
 				ubp.save!

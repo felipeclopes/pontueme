@@ -3,7 +3,8 @@ class Card < ActiveRecord::Base
 
 	has_many :checkins
   	has_many :coupons
-	has_many :card_business_points
+	has_many :card_business_points, :class_name => 'CardBusinessPoints'
+	has_many :business, :through => :card_business_points
 
 	def add_coupon(benefit)
 		cbp = CardBusinessPoints.find_by_business_id_and_card_id(benefit.business_id, self)		

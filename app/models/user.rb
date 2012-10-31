@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   has_many :checkins
   has_many :coupons
   has_many :cards
-  has_many :user_business_points
+  has_many :user_business_points, :class_name => 'UserBusinessPoints'
+  has_many :business, :through => :user_business_points
 
   devise :database_authenticatable, :registerable, :authentication_keys => [:email]
   # Include default devise modules. Others available are:
@@ -10,37 +11,40 @@ class User < ActiveRecord::Base
   # devise :database_authenticatable, :oauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :password_changed
   
   after_create :mail_new_user
   
   def add_coupon(benefit, card = nil)
-      ubp = UserBusinessPoints.find_by_business_id_and_user_id(benefit.business_id, self)
+    ubp = self.user_business_points.where(:business == benefit.business_id)      
         
-      if !ubp.nil? && ubp.total_points >= benefit.checkins_needed         
-        coupon = Coupon.new
-        coupon.code = Coupon.generate_code
-        coupon.points = benefit.checkins_needed
-        coupon.active = false
-        coupon.benefit = benefit
-        coupon.user = self
-        coupon.card = card
-          
-        return coupon.save!
-      end
+    if ubp.count > 0 && ubp.points >= benefit.checkins_needed         
+      coupon = Coupon.new
+      coupon.code = Coupon.generate_code
+      coupon.points = benefit.checkins_needed
+      coupon.active = false
+      coupon.benefit = benefit
+      coupon.user = self
+      coupon.card = card
+        
+      return coupon.save!
+    end
+    return false
   end
 
   def add_card(card)
     card.user = self
 
-    CardBusinessPoints.find_all_by_card_id(card).each do |cbp|
-      ubp = UserBusinessPoints.find_by_business_id_and_user_id(cbp.business_id, self)
+    card.card_business_points.each do |cbp|
+      ubp = self.user_business_points.where(:business_id => cbp.business)
 
-      if ubp.nil?
-        ubp = UserBusinessPoints.new(user: self, business: cbp.business, total_points:0)
+      if ubp.count == 0
+        ubp = UserBusinessPoints.new(user: self, business: cbp.business, points:0)
+      else
+        ubp = ubp.first
       end
 
-      ubp.total_points = ubp.total_points + cbp.points
+      ubp.points = ubp.points + cbp.points
       ubp.save
     end
 

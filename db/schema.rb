@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121019032310) do
+ActiveRecord::Schema.define(:version => 20121030035407) do
 
   create_table "benefits", :force => true do |t|
     t.string   "name"
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20121019032310) do
   create_table "user_business_points", :force => true do |t|
     t.integer  "user_id"
     t.integer  "business_id"
-    t.integer  "total_points"
+    t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

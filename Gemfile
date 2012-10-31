@@ -23,11 +23,11 @@ gem "friendly_id", "~> 4.0.1"
 gem 'execjs'
 
 
-group :development
+group :development do
 	gem 'sqlite3'
 end
 
-group :production
+group :production do
 	gem 'therubyracer'
 	gem 'mysql2'
 end

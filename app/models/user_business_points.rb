@@ -3,10 +3,10 @@ class UserBusinessPoints < ActiveRecord::Base
 	belongs_to :user
 	
 	def add_coupon(coupon)
-		self.total_points = self.total_points - coupon.points
+		self.points = self.points - coupon.points
 	end
 	
 	def add_checkin(checkin)
-		self.total_points = self.total_points + checkin.points
+		self.points = self.points + checkin.points
 	end
 end

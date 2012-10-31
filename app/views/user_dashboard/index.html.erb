@@ -4,11 +4,11 @@
 	<div class="main-inner">
 		<div class="container">
 
-			<% if false #unless current_user.password_changed %>
+			<% unless current_user.password_changed %>
 
 			<div class="hero-unit">
 				<div class="row">
-					<h2>Nunca mudou sua senha? Mude <a class='h1-pontueme' href='users/edit'>aqui</a><h2>
+					<h2>Nunca mudou sua senha? Mude <%= link_to "aqui", edit_user_registration_path, :html => {:class => 'h1-pontueme' } %><h2>
 				</div>
 			</div>
 
@@ -34,15 +34,15 @@
 						<div class="widget-content">
 							<div class="stats">
 								<div class="stat">
-									<span class="stat-value"><%= @checkins.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
+									<span class="stat-value"><%= @checkins.sum{|c| c.points}.presence || 0 %></span>
 									Total
 								</div>
 								<div class="stat">
-									<span class="stat-value"><%= @checkins.select{|c| c.created_at.to_date > 7.days.ago.to_date}.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
+									<span class="stat-value"><%= @checkins.select{|c| c.created_at.to_date > 7.days.ago.to_date}.map{|c| c.points}.sum.presence || 0 %></span>
 									7 dias
 								</div>
 								<div class="stat">
-									<span class="stat-value"><%= @checkins.select{|c| c.created_at.to_date > Date.today}.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
+									<span class="stat-value"><%= @checkins.select{|c| c.created_at.to_date > Date.today}.map{|c| c.points}.sum.presence || 0 %></span>
 									Hoje
 								</div>
 							</div>
@@ -52,7 +52,7 @@
 									<div id="donut-chart" class="chart-holder"></div>
 								</div>
 								<div class="stat stat-time">
-									<span class="stat-value"><%= @ubps.map{|c| c.total_points}.inject{|sum,x| sum + x }.presence || 0 %></span>
+									<span class="stat-value"><%= @ubps.map{|c| c.points}.sum.presence || 0 %></span>
 									Total de pontos
 								</div> <!-- /substat -->
 							</div>
@@ -96,15 +96,12 @@
 						</div>
 						<div class="widget-content">							
 							<div class="shortcuts">
-								<% @business.each do |b| %>
-									<% @ubp = @ubps.select{|u| u.business_id == b.id}.first %>
-									<% unless @ubp.nil? %>
-									<a href="/businesses/<%= b.id%>" class="shortcut">										
+								<% @ubps.each do |b| %>									
+									<a href="/businesses/<%= b.business.id%>" class="shortcut">									
 										<i class="shortcut-icon icon-list-alt"></i>										
-										<span class="shortcut-label"><%= b.name %></span>
-										Pontos: <%= @ubp.total_points %>
+										<span class="shortcut-label"><%= b.business.name %></span>
+										Pontos: <%= b.points %>
 									</a>
-									<% end %>
 								<% end %>
 							</div>							
 						</div>
