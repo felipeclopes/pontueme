@@ -28,9 +28,9 @@ class Checkin < ActiveRecord::Base
 
 	def self.sum_points(user, card, business)
 		unless user.nil?
-			return user.user_business_points.where(:business == business).sum{|p| p.points}
+			return user.user_business_points.where('business_id' => business).sum('points')
 		else 
-			return card.card_business_points.where(:business == business).sum{|p| p.points}
+			return card.card_business_points.where('business_id' => business).sum('points')
 		end
 
 		return 0
