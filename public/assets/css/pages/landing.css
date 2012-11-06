@@ -9,11 +9,11 @@
 {
 	margin-left: 0px;
 	margin-right: 0px;
-	width: 100%;
-
+	background-image: url('/assets/img/landing/background-video.png');
+	background-repeat: repeat;
 }
 
-#video-container .separator
+.separator
 {
 	background-image:url('/assets/img/landing/separator-top.png');
 	background-repeat: repeat-x;
@@ -21,7 +21,7 @@
 	height: 40px;
 }
 
-#video-container .separator-bot
+.separator-bot
 {
 	background-image:url('/assets/img/landing/separator-bot.png');
 	background-repeat: repeat-x;
@@ -29,16 +29,14 @@
 	height: 40px;
 }
 
-#video-container .row-video
+.row-video
 {
 	height: 345px;
-	background-image: url('/assets/img/landing/background-video.png');
-	background-repeat: repeat;
 	padding-top: 30px;
 	color: #EAEAEA;
 }
 
-#video-container .span-video h1
+.span-video h1
 {
 	margin-bottom: 0;
 	font-size: 60px;
@@ -47,13 +45,13 @@
 	letter-spacing: -1px;
 }
 
-#video-container .span-video h2 
+.span-video h2 
 {
 	font-size: 24px;
 	line-height: 36px;
 }
 
-#video-container .span-video h3 
+.span-video h3 
 {
 	line-height: 27px;
 	font-size: 18px;
