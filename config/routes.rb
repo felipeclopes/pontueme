@@ -1,10 +1,14 @@
 Pontueme::Application.routes.draw do
-    get "user_dashboard/index"
+  get "user_dashboard/index"
   get "business_dashboard/index"
 
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_for :businesses
   
+  devise_scope :user do
+    get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+  end
+
   resource :coupons, :only => [:show]
   resource :contact_forms, :only => [:new, :create]
   resource :cards, :only => [:index, :create]

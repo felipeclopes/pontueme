@@ -5,12 +5,10 @@ class User < ActiveRecord::Base
   has_many :user_business_points, :class_name => 'UserBusinessPoints'
   has_many :business, :through => :user_business_points
 
-  devise :database_authenticatable, :registerable, :authentication_keys => [:email]
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable, :lockable, :timeoutable and :oauthable
-  # devise :database_authenticatable, :oauthable
+  has_many :social_authorization
 
-  # Setup accessible (or protected) attributes for your model
+  devise :database_authenticatable, :registerable, :omniauthable, :authentication_keys => [:email]
+  
   attr_accessible :email, :password, :password_confirmation, :remember_me, :password_changed
   
   after_create :mail_new_user

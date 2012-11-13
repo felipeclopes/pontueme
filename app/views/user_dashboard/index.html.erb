@@ -4,6 +4,8 @@
 	<div class="main-inner">
 		<div class="container">
 
+			<h2><%= link_to "Facebook", '/auth/facebook', :html => {:class => 'h1-pontueme' } %></h2>
+
 			<% unless current_user.password_changed %>
 
 			<div class="hero-unit">
