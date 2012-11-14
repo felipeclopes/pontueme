@@ -15,3 +15,4 @@
 /tmp
 /config/database.yml
 /naosite/*
+/Gemfile.lock
