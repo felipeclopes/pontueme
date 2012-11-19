@@ -16,19 +16,24 @@ class User < ActiveRecord::Base
   after_create :mail_new_user
   
   def add_coupon(benefit, card = nil)
-    ubp = self.user_business_points.where(:business == benefit.business_id)      
+    ubps = self.user_business_points.where('business_id' => benefit.business_id)
         
-    if ubp.count > 0 && ubp.points >= benefit.checkins_needed         
-      coupon = Coupon.new
-      coupon.code = Coupon.generate_code
-      coupon.points = benefit.checkins_needed
-      coupon.active = false
-      coupon.benefit = benefit
-      coupon.user = self
-      coupon.card = card
-        
-      return coupon.save!
+    if ubps.count > 0 
+      ubp = ubps.first
+
+      if ubp.points >= benefit.checkins_needed         
+        coupon = Coupon.new
+        coupon.code = Coupon.generate_code
+        coupon.points = benefit.checkins_needed
+        coupon.active = false
+        coupon.benefit = benefit
+        coupon.user = self
+        coupon.card = card
+          
+        return coupon.save!
+      end
     end
+
     return false
   end
 

@@ -1,8 +1,29 @@
+/* -----------------------------
+      Call Out
+ ----------------------------- */
+
 .hero-unit-landing
 {
 	background-color: transparent;
 	margin-bottom: 0px;
 	padding-bottom: 30px;
+}
+
+.call-to-action
+{
+	padding-left: 45px;
+}
+
+/* -----------------------------
+      Video Container
+ ----------------------------- */
+
+.video-container
+{
+	margin-left: 0px;
+	margin-right: 0px;
+	background-image: url('/assets/img/landing/background-video.png');
+	background-repeat: repeat;
 }
 
 .separator
@@ -24,8 +45,6 @@
 .row-video
 {
 	height: 345px;
-	background-image: url('/assets/img/landing/background-video.png');
-	background-repeat: repeat;
 	padding-top: 30px;
 	color: #EAEAEA;
 }
@@ -50,6 +69,10 @@
 	line-height: 27px;
 	font-size: 18px;
 }
+
+/* -----------------------------
+      Information
+ ----------------------------- */
 
 .row-info
 {
