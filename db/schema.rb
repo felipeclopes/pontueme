@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121030035407) do
+ActiveRecord::Schema.define(:version => 20121107222148) do
 
   create_table "benefits", :force => true do |t|
     t.string   "name"
@@ -71,6 +71,14 @@ ActiveRecord::Schema.define(:version => 20121030035407) do
     t.datetime "updated_at"
     t.boolean  "active",     :default => true
     t.integer  "card_id"
+  end
+
+  create_table "social_authentications", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
   end
 
   create_table "socials", :force => true do |t|

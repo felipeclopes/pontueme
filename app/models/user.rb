@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   has_many :user_business_points, :class_name => 'UserBusinessPoints'
   has_many :business, :through => :user_business_points
 
-  has_many :social_authorization
+  has_many :social_authentications
 
   devise :database_authenticatable, :registerable, :omniauthable, :authentication_keys => [:email]
   

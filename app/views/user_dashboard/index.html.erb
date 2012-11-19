@@ -4,8 +4,6 @@
 	<div class="main-inner">
 		<div class="container">
 
-			<h2><%= link_to "Facebook", '/auth/facebook', :html => {:class => 'h1-pontueme' } %></h2>
-
 			<% unless current_user.password_changed %>
 
 			<div class="hero-unit">
@@ -14,6 +12,24 @@
 				</div>
 			</div>
 
+			<% end %>
+			
+			<% if !(current_user.social_authentications.count > 0) %>
+			
+			<div class="hero-unit">
+				<div class="row">
+					<h2>Conecte-se ao <%= link_to "Facebook", "/users/auth/facebook", :html => {:class => 'h1-pontueme' } %> e compartilhe com seus amigos!<h2>
+				</div>
+			</div>
+			
+			<% elsif flash[:facebook] %>
+			
+			<div class="hero-unit">
+				<div class="row">
+					<h2><%= flash[:facebook] %></h2>
+				</div>
+			</div>
+				
 			<% end %>
 
 			<% unless @checkins.count > 0  %>
