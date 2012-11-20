@@ -13,6 +13,21 @@ class User < ActiveRecord::Base
   
   after_create :mail_new_user
   
+  def facebook
+    @fb_user ||= FbGraph::User.me(self.authentications.find_by_provider('facebook').token)
+  end
+  
+  def apply_facebook(omniauth)
+    if (extra = omniauth['extra']['raw_info'] rescue false)
+      social_authentications.find_or_create_by_provider_and_uid omniauth['provider'], omniauth['uid'] do |u|        
+        self.birthday = (Date.parse(extra['birthday']) rescue '')
+        self.gender = (extra['gender'] rescue '')
+        self.location = (extra['location'].name rescue '')
+        self.save!
+      end
+    end
+  end
+  
   def add_coupon(benefit, card = nil)
     ubps = self.user_business_points.where('business_id' => benefit.business_id)
         
@@ -27,6 +42,11 @@ class User < ActiveRecord::Base
         coupon.benefit = benefit
         coupon.user = self
         coupon.card = card
+          
+        current_user.facebook.feed!(
+          :message => 'Acabei de trocar meus pontos no Pontue.me por #{benefit.name} na #{ubp.business.name}!',
+          :name => 'Pontue.me'
+        )
           
         return coupon.save!
       end

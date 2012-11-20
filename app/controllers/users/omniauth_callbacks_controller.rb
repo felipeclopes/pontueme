@@ -1,8 +1,9 @@
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def facebook
 		auth = request.env["omniauth.auth"]
-    current_user.social_authentications.find_or_create_by_provider_and_uid auth['provider'], auth['uid']
-    flash[:facebook] = "Autenticado com sucesso!"
+    if current_user.apply_facebook (auth)
+      flash[:facebook] = "Autenticado com sucesso!"
+    end
     redirect_to user_dashboard_index_path
 	end
 
