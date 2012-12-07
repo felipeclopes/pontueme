@@ -1,109 +1,76 @@
-<br />
+<div id="page-title">
 
-<div class="main">
-	
-	<div class="main-inner">
+	<div id="page-title-inner">
 
+		<!-- start: Container -->
 		<div class="container">
+
+			<h2><i class="ico-stats ico-white"></i><%= @business.name %></h2>
+
+		</div>
+		<!-- end: Container  -->
+
+	</div>	
+
+</div>
+
+<div class="wrapper">
 	
-		  <div class="row">
-			
+	<div class="container">
+
+		<div class="row">
+
 			<div class="span4">
-				
-				<div class="widget-content">
-					
-					<p>
-					<h2><%= @business.name %></h2>
-					<i><%= @business.category %></i>
-					</p>
-					
-					<p>
-						<i class="icon-map-marker"></i>
-						<%= @business.address %>
-					</p>
-					
-					<p>
-						<i class="icon-home"></i>
-						<a href='<%= @business.website %>'><%= @business.website %></a>
-					</p>
-						
-				</div>
-			
+
+				<div class="title"><h3><%= @business.category %></h3></div>
+
+				<p>
+					<i class="icon-map-marker"></i>
+					<%= @business.address %>
+				</p>
+
+				<p>
+					<i class="icon-home"></i>
+					<a href='<%= @business.website %>'><%= @business.website %></a>
+				</p>
+
 			</div>
-			
-			<div class="span8">
-				
-				<div class="widget">
-						
-					<div class="widget-header">
-						<i class="icon-th-large"></i>
-						<h3>Benefícios</h3>
-					</div> <!-- /widget-header -->
-					
-					<div class="widget-content">
-						
-						<% unless @business.benefits.count <= 0  %>
-						
-						<div class="pricing-plans plans-<%= @business.benefits.count > 4 ? @business.benefits.count : 4 %>">
-						
-						<% @business.benefits.each do |b| %>							
-						<div class="plan-container">
-							<div class="plan">
-								<div class="plan-header">
-									
-									<div class="plan-title">
-										<%= b.name %>		
-									</div> <!-- /plan-title -->
-									
-									<div class="plan-price">
-										<%= b.checkins_needed %><span class="term">Pontos</span>
-									</div> <!-- /plan-price -->
-									
-								</div> <!-- /plan-header -->	        
-								
-								<div class="plan-features">
-									<ul>
-										<li><%= b.description %></li>										
-									</ul>
-								</div> <!-- /plan-features -->
-								
-								<div class="plan-actions">	
-									&nbsp
-								</div> <!-- /plan-actions -->								
-					
-							</div> <!-- /plan -->
-						</div> <!-- /plan-container -->
-						<% end %>
-				
-						</div> <!-- /pricing-plans -->
-				
-						<% end %>
-						
-					</div> <!-- /widget-content -->
-						
-				</div> <!-- /widget -->					
-				
-			</div> <!-- /span12 -->     	
-			
-			
-		  </div> <!-- /row -->
 	
-		</div> <!-- /container -->
+			<div class="span6">
 		
-	</div> <!-- /main-inner -->
+					<% unless @business.benefits.count <= 0  %>
+		
+					<% @business.benefits.each_with_index do |b, i| %>
+					
+					<div class="span6">
+				
+						<div class="title">
+							<h3><%= b.name %></h3>
+						</div>
+						
+						<ul class="arrow_list">
+							<li>
+								<div class="points">						
+									<h4><b><%= b.checkins_needed %></b> pontos</h4>
+								</div>
+							</li>
+							<li>
+								<p class="points"><%= b.description %></p>
+							</li>
+						</ul>
+							
+					</div> <!-- /span3 -->
+
+					<% end %>
+
+					<% end %>
+		
+			</div> <!-- /span8 -->		
 	
-</div> <!-- /main -->
+		</div>
 	
+	</div> <!-- /container -->
+	
+</div> <!-- /wrapper -->
 
-<!-- Le javascript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-	<script src="../assets/theme/jquery-1.7.2.min.js"></script>
-
-	<script src="../assets/theme/bootstrap.js"></script>
-	<script src="../assets/theme/base.js"></script>
-
-  </body>
-</html>
-
-<%= render :partial=>"shared/footer" %>
+<%= render "shared/footer" %>

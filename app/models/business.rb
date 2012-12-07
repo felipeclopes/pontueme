@@ -1,7 +1,8 @@
 class Business < ActiveRecord::Base
 	has_many :checkins
 	has_many :coupons
-	has_many :user_business_points
+	has_many :users, :through => :user_points
+	has_many :user_points
 	
 	has_many :benefits	
 	

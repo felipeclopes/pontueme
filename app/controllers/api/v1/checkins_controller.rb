@@ -11,7 +11,7 @@ class Api::V1::CheckinsController < ApplicationController
 		checkin = Checkin.new_checkin(email, code, business)
 		
 		if checkin.save!
-			points = Checkin.sum_points(checkin.user, checkin.card, checkin.business)
+			points = checkin.user.user_points.where(:business_id => current_business).first.points
 			benefits = Benefit.find_all_by_business_id(current_business)
 
 			render :status=>200, :json=> { :points => points, :benefits => benefits}

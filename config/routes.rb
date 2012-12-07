@@ -10,7 +10,7 @@ Pontueme::Application.routes.draw do
   end
 
   resource :coupons, :only => [:show]
-  resource :contact_forms, :only => [:new, :create]
+  resource :contact_forms, :only => [:create]
   resource :cards, :only => [:index, :create]
   
   match 'businesses/:id' => 'businesses#show'

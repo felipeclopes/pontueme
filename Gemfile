@@ -16,12 +16,14 @@ end
 gem 'jquery-rails'
 
 gem 'devise'
+gem 'fb_graph'
 
 gem 'omniauth-facebook'
 
 gem "friendly_id", "~> 4.0.1"
 gem 'execjs'
 
+gem 'lazy_high_charts'
 
 group :development do
 	gem 'sqlite3'

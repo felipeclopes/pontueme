@@ -2,23 +2,20 @@ class Card < ActiveRecord::Base
 	belongs_to :user
 
 	has_many :checkins
-  	has_many :coupons
-	has_many :card_business_points, :class_name => 'CardBusinessPoints'
-	has_many :business, :through => :card_business_points
+  has_many :coupons
+	has_many :businesses, :through => :card_points
+  has_many :card_points
 
 	def add_coupon(benefit)
-		cbp = CardBusinessPoints.find_by_business_id_and_card_id(benefit.business_id, self)		
+		cbp = CardPoint.find_by_business_id_and_card_id(benefit.business_id, self)		
 
 		if self.user
 			return self.user.add_coupon(benefit, self)
-		end
-
-		if cbp.points >= benefit.checkins_needed
+		elsif cbp.points >= benefit.checkins_needed
 			coupon = Coupon.new
-	        coupon.code = Coupon.generate_code
-	        coupon.points = benefit.checkins_needed
-	        coupon.active = false
-	        coupon.benefit = benefit
+      coupon.code = Coupon.generate_code
+      coupon.points = benefit.checkins_needed
+      coupon.benefit = benefit
 			coupon.card = self         
 			coupon.user = self.user
 

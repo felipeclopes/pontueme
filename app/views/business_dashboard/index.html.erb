@@ -1,172 +1,94 @@
-<br/>
+<div id="page-title">
 
-<div class="main">
-	<div class="main-inner">
+	<div id="page-title-inner">
+
+		<!-- start: Container -->
 		<div class="container">
-			<div class="row">			
-				<div class="span12">
-					<div class="widget big-stats-container">
-						<div class="widget-content">
-							<div id="big_stats" class="cf">
-								<div class="stat">							
-									<h4>Total de pontos</h4>
-									<span class="value"><%= @checkins.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
-								</div> <!-- .stat -->
 
-								<div class="stat">
-									<h4>Pontos neste mês</h4>
-									<span class="value"><%= @checkins.select { |c| c.created_at > 30.days.ago && c.created_at.month == DateTime.now.month}.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
-								</div> <!-- .stat -->
-								
-								<div class="stat">								
-									<h4>Coupons Emitidos</h4>
-									<span class="value"><%= @coupons.count %></span>
-								</div> <!-- .stat -->
+			<h2><i class="ico-stats ico-white"></i>Painel de Controle</h2>
 
-								<div class="stat">								
-									<h4>Pontos resgatados</h4>
-									<span class="value"><%= @coupons.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %></span>
-								</div> <!-- .stat -->
-							</div>
-						</div> <!-- /widget-content -->
-					</div> <!-- /widget -->
-				</div> <!-- /span12 -->	
-			</div> <!-- /row -->
-		  	<div class="row">
-			
-				<div class="span6">
-					<div class="widget">
-						<div class="widget-header">
-							<i class="icon-signal"></i>
-							<h3>Pontos / Resgates</h3>
-						</div>
-						<div class="widget-content">
-							<div id="chart-stats" class="stats">
-								<div class="stat stat-chart">
-									<div id="pie-chart" class="chart-holder"></div>
-								</div>
-							</div>
-						</div>
-					</div>				
-				</div>
-				<div class="span6">				
-					<div class="widget">
-						<div class="widget-header">
-							<i class="icon-th-list"></i>
-							<h3>Pontos no mês</h3>
-						</div>
-						<div class="widget-content">
-							<div id="area-chart" class="chart-holder"></div>
-						</div> <!-- /widget-content -->
-
-					</div>				
-				</div>
-			</div>
 		</div>
-	</div>
+		<!-- end: Container  -->
+
+	</div>	
+
 </div>
 
-<script src="../assets/theme/jquery-1.7.2.min.js"></script>
-<script src="../assets/theme/excanvas.min.js"></script>
-
-<script src="../assets/theme/jquery.flot.js"></script>
-<script src="../assets/theme/jquery.flot.pie.js"></script>
-<script src="../assets/theme/jquery.flot.orderBars.js"></script>
-<script src="../assets/theme/jquery.flot.resize.js"></script>
-
-<script src="../assets/theme/bootstrap.js"></script>
-<script src="../assets/theme/base.js"></script>
-
-<script src="../assets/theme/base.js"></script>
-
-<script type="text/javascript">
-
-$(function () {	
-	var data = [];
-	var series = 2;
-	data[0] = {label: "Pontuados", data: <%= @checkins.count > 0 ? @checkins.map{|c| c.points}.inject{|sum,x| sum + x } : 0 %>};
-	data[1] = {label: "Resgatados", data: <%= @coupons.count > 0 ? @coupons.map{|c| c.points}.inject{|sum,x| sum + x } : 0 %>};
+<div class="wrapper">
 	
-	$.plot($("#pie-chart"), data, 
-	{
-		colors: ["#F90", "#222"],
-		series: {
-			pie: { 
-				show: true,
-				label: {
-					show: false,
-					formatter: function(label, series){
-						return '<div style="font-size:11px;text-align:center;padding:4px;color:white;">'+label+'<br/>'+Math.round(series.percent)+'%</div>';
-					},
-					threshold: 0.1
-				}
-			}
-		},
-		legend: {
-			show: true,
-			noColumns: 1, // number of colums in legend table
-			labelFormatter: null, // fn: string -> string
-			labelBoxBorderColor: "#888", // border color for the little label boxes
-			container: null, // container (as jQuery object) to put legend in, null means default on top of graph
-			position: "ne", // position of default legend container within plot
-			margin: [5, 10], // distance from grid edge to default legend container within plot
-			backgroundOpacity: 0 // set to 0 to avoid background
-		},
-		grid: {
-			hoverable: false,
-			clickable: false
-		},
-	});
-	
-	data = [];	
-	var res = <%= Array.new(DateTime.now.day)
-					.each_with_index.map{|x, i|
-						cs = @checkins.select{ 
-							|c| c.created_at > 30.days.ago && 
-								c.created_at.month == DateTime.now.month && 
-								c.created_at.day  == i + 1}
-						
-						puts '----'
-						puts i
-						puts cs.count
-						puts '----'
-								
-						if cs.count == 0 
-							0
-						else
-							cs.map{|c| c.points}.inject{|sum,x| sum + x } 
-						end
-					}%>;
-	
-	var max = 0;		
-	for (var i = 0; i < res.length; i++)
-	{
-		if(max < res[i])
-			max = res[i];
-		data.push([i + 1, res[i]])		
-	}
+	<div class="container">
+		
+		<div class="row">
 
-	// setup plot
-	var options = {
-		yaxis: { min: 0, max: max },
-		xaxis: { min: 1, max: data.length },
-		colors: ["#F90", "#222", "#666", "#BBB"],
-		series: {
-				   lines: { 
-						lineWidth: 2, 
-						fill: true,
-						fillColor: { colors: [ { opacity: 0.6 }, { opacity: 0.2 } ] },
-						steps: false
+			<div class="span4">
 
-					}
-			   }
-	};
-	
-	var plot = $.plot($("#area-chart"), [data], options);
-	
-});
+				<div class="title"><h3>Resumo de utilização</h3></div>
 
-</script>
+				<ul class="progress-bar progress-statistics">
+					
+					<% total = @checkins.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 1 %>
+					<% mes = @checkins.select { |c| c.created_at > 30.days.ago && c.created_at.month == DateTime.now.month}
+						.map{|c| c.points}
+						.inject{|sum,x| sum + x }
+						.presence || 0 %>						
+					<% resgates = @coupons.map{|c| c.points}.inject{|sum,x| sum + x }.presence || 0 %>
+					
+					<li>
+						<h3>Total de pontos: <%= total %></h3>
+		            	<div class="meter">
+							<span style="width: 370px;"></span>
+						</div>
+		          	</li>
+		
+					<li class="separate">						
+						<h3>Pontos nesse mês: <%= mes %><h3>
+		            	<div class="meter">
+							<span style="width: <%= (([mes, 1].max()) * 370) / total %>px;"></span>
+						</div>
+		          	</li>
+		
+					<li>						
+						<h3>Pontos resgatados: <%= resgates %><h3>
+		            	<div class="meter">
+							<span style="width: <%= (([resgates, 1].max()) * 370) / total %>px;"></span>
+						</div>
+		          	</li>
+		
+				</ul>
+				<ul class="progress-bar">
+		
+					<li>						
+		            	<h3>Benefícios trocados: <%= @coupons.count %><h3>
+					</li>
+					
+				</ul>
 
+			</div>
+			<!-- /span4 -->
+			
+			<div class="span4">
+				
+				<div class="title"><h3>Facebook</h3></div>
+				
+				<%= high_chart("social_chart", @social) %>
+				
+			</div>
+			<!-- /span4 -->
+			
+			<div class="span4">
+				
+				<div class="title"><h3>Idade e Sexo</h3></div>
+				
+				<%= high_chart("gender_age_chart", @gender_age) %>
+				
+			</div>
+			<!-- /span4 -->
+			
+		</div>
+		<!-- /row -->
+		
+	</div>
+	<!-- /container -->
 
-
+</div>
+<!-- /wrapper -->
