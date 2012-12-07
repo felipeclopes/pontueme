@@ -1,0 +1,80 @@
+/* -----------------------------
+      Call Out
+ ----------------------------- */
+
+.hero-unit-landing
+{
+	background-color: transparent;
+	margin-bottom: 0px;
+	padding-bottom: 30px;
+}
+
+.call-to-action
+{
+	padding-left: 45px;
+}
+
+/* -----------------------------
+      Video Container
+ ----------------------------- */
+
+.video-container
+{
+	margin-left: 0px;
+	margin-right: 0px;
+	background-image: url('/assets/img/landing/background-video.png');
+	background-repeat: repeat;
+}
+
+.separator
+{
+	background-image:url('/assets/img/landing/separator-top.png');
+	background-repeat: repeat-x;
+	background-position: bottom left;
+	height: 40px;
+}
+
+.separator-bot
+{
+	background-image:url('/assets/img/landing/separator-bot.png');
+	background-repeat: repeat-x;
+	background-position: top left;
+	height: 40px;
+}
+
+.row-video
+{
+	height: 345px;
+	padding-top: 30px;
+	color: #EAEAEA;
+}
+
+.span-video h1
+{
+	margin-bottom: 0;
+	font-size: 60px;
+	line-height: 1;
+	color: inherit;
+	letter-spacing: -1px;
+}
+
+.span-video h2 
+{
+	font-size: 24px;
+	line-height: 36px;
+}
+
+.span-video h3 
+{
+	line-height: 27px;
+	font-size: 18px;
+}
+
+/* -----------------------------
+      Information
+ ----------------------------- */
+
+.row-info
+{
+	padding-top: 30px;
+}
