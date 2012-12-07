@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
       if self.facebook
         self.facebook.feed!(
           :message => "Acabei de trocar #{benefit.checkins_needed} de meus pontos por #{benefit.name} de #{benefit.business.name} utilizando o http://pontue.me!",
-          :link => "https://pontue.me/businesses/#{benefit.business.slug}",
+          :link => "http://pontue.me/businesses/#{benefit.business.slug}",
           :name => "Benefícios #{benefit.business.name} por Pontue.me",                               
           :description => "#{benefit.business.name} - Veja agora os benefícios disponíveis para troca!!",
           :picture => "https://graph.facebook.com/pontueme/picture"
