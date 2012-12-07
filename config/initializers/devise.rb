@@ -1,7 +1,11 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
-  config.omniauth :facebook, '396783260390829', 'a504939e60c3410ed1becc44f41d4b94', {:scope => 'publish_stream, offline_access, email, user_birthday, user_location'}#, {client_options: {ssl: {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
+  if Rails.env.development?
+    config.omniauth :facebook, '396783260390829', 'a504939e60c3410ed1becc44f41d4b94', {:scope => 'publish_stream, offline_access, email, user_birthday, user_location'}#, {client_options: {ssl: {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
+  else
+    config.omniauth :facebook, '355367327862962', 'b655377a1917ee0677cb85947a71eb1b', {:scope => 'publish_stream, offline_access, email, user_birthday, user_location'}#, {client_options: {ssl: {ca_file: Rails.root.join('lib/assets/cacert.pem').to_s}}}
+  end
     
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
