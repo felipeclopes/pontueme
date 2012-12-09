@@ -6,7 +6,7 @@ window.urlFilter = {}
 window.urlFilter.user_dashboard = ->
 		$('#add-card').click (e) ->
 			e.preventDefault()
-			$.ajax '/contact_form',
+			$.ajax '/cards/create',
 				type: 'POST'
 				dataType: 'json'
 				data: { code: $("#code").val() }

@@ -35,9 +35,7 @@
 		<% elsif flash[:facebook] %>
 		
 		<div class="hero-unit">
-			<div class="row">
-				<h2><%= flash[:facebook] %></h2>
-			</div>
+			<h2><%= flash[:facebook] %></h2>
 		</div>
 			
 		<% end %>
@@ -150,7 +148,7 @@
 							<% end %>							
 							<tr>
 								<td><%= text_field_tag "code", nil, :class => 'input-large'%></td>
-								<td><button class="button btn btn-primary btn-large" id="add_card">Adicionar</button></td>
+								<td><button class="button btn btn-primary btn-large" id="add-card">Adicionar</button></td>
 							</tr>
 						</tbody>								
 					</table>

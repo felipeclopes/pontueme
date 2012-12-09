@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $(document).ready ->
-	if $("page-header")
+	if $("#page-header").length > 0
 		$('#send').click (e) ->
 			e.preventDefault()
 			$.ajax '/contact_form/create',

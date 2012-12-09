@@ -16,7 +16,7 @@ class CardsController < ApplicationController
     end      
 
     respond_to do |format|
-	    format.js { render json: { :card => card, :points => card.card_business_points.sum("points") } , content_type: 'text/json' }
+	    format.js { render json: { :card => card, :points => card.card_points.sum("points") } , content_type: 'text/json' }
 	  end
   end
 end
