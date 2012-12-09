@@ -41,6 +41,8 @@
 			          <%= f.password_field :password, :class => 'login password-field' %>
 			        </div> <!-- /password -->
         
+					<%= f.hidden_field :password_changed, :value=>'true' %>
+
 			      </div> <!-- /login-fields -->
       
 			      <div class="login-actions">

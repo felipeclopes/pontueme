@@ -1,50 +1,60 @@
-<div class="account-container register">
-  
-  <div class="content clearfix">
-  
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+<div id="page-title">
 
-  <h1>Registrar</h1>
-  
-  <div class="login-fields">
-        
-    <p>Crie sua conta gratuita:</p>
-    <%= devise_error_messages! %> 
-    
-    <div class="field">
-      <label for="email">Email:</label>
-      <%= f.email_field :email, :class => 'login', :placeholder => 'Email' %>
-    </div> <!-- /field -->
-    
-    <div class="field">
-      <label for="senha">Senha:</label>
-      <%= f.password_field :password, :class => 'login', :placeholder => 'Senha' %>
-    </div> <!-- /field -->    
-    
-    <div class="field">
-      <label for="conirmacao">Confirmacao:</label>
-      <%= f.password_field :password_confirmation, :class => 'login', :placeholder => 'Confirmacao' %>
-    </div> <!-- /field -->
-        
-    </div> <!-- /login-fields -->
-    
-    <div class="login-actions">             
-      <p><%= f.submit "Registrar", :class => "button btn btn-primary btn-large" %></p>      
-    </div> <!-- .actions -->
+	<div id="page-title-inner">
 
-  </div>
-  
-  <% end %>
-  
+		<!-- start: Container -->
+		<div class="container">
+
+			<h2><i class="ico-stats ico-white"></i>Usuário</h2>
+
+		</div>
+		<!-- end: Container  -->
+
+	</div>	
+
 </div>
 
-<div class="login-extra">
-  Ja tem uma conta? <%= link_to "Entrar", new_user_session_path %>
-</div> <!-- /login-extra -->
+<div class="wrapper">
+	
+	<div class="container">
+		
+		<div class="span4 offset4">
+			
+			<!-- start: Contact Form -->
+			<div id="contact-form">
+   
+			    <%= devise_error_messages! %>
 
-<script src="../assets/theme/jquery-1.7.2.min.js"></script>
+  				<div class="title"><h1>Registrar</h1></div>
 
-<script src="../assets/theme/bootstrap.js"></script>
-<script src="../assets/theme/base.js"></script>
+		  			<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+		
+					<p>Registre-se gratuitamente:</p>
+        
+			        <div class="field">
+			          <label for="email">Email:</label>
+			          <%= f.email_field :email, :class => 'login username-field' %>
+			        </div> <!-- /field -->
+			
+					<div class="field">
+			          <label for="senha">Senha:</label>
+			          <%= f.password_field :password, :class => 'login password-field' %>
+			        </div> <!-- /password -->
+        
+			      </div> <!-- /login-fields -->
+    
+  				<div class="login-actions">
 
-<script src="../assets/theme/signin.js"></script>
+			        <%= f.submit "Registrar", :class => "button btn btn-large" %>
+
+			      </div> <!-- .actions -->
+
+			    <% end %>
+
+			  </div> <!-- /contact-form -->
+
+		</div> <!-- /span4 -->
+
+	</div> <!-- /container -->
+
+</div> <!-- /wrapper -->
