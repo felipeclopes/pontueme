@@ -91,8 +91,8 @@ class BusinessDashboardController < ApplicationController
             }
         }
         
-        mens = @connected_users.select{|m| m.gender == 'male'}        
-        womens = @connected_users.select{|m| m.gender == 'female'}
+        mens = @connected_users.select{|m| m.gender == 'male'}.select{|m| m.birthday != nil}        
+        womens = @connected_users.select{|w| w.gender == 'female'}.select{|w| w.birthday != nil}        
         
         mens_age = []
         womens_age = []

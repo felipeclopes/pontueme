@@ -20,7 +20,7 @@
 @bn11 = Benefit.create(name: 'Combine um acessório', description: 'Qualquer acessório com 25% de desconto para combinar com sua compra', checkins_needed: 1, enabled: true, business: @b1 )
 @bn12 = Benefit.create(name: '3 por 5', description: 'Troque 3 pontos por 5% de desconto em qualquer produto da loja', checkins_needed: 3, enabled: true, business: @b1 )
 @bn13 = Benefit.create(name: 'Seja uma modelo PitiNat', description: 'Tire 05 fotos utilizando qualquer produto de nossa loja.', checkins_needed: 10, enabled: true, business: @b1 )
-@bn14 = Benefit.create(name: 'Sinta-se', description: 'Troque seus pontos por 15% de desconto em qualquer jeans', checkins_needed: 15, enabled: true, business: @b1 )
+@bn14 = Benefit.create(name: 'Sinta-se Azul', description: 'Troque seus pontos por 15% de desconto em qualquer jeans', checkins_needed: 15, enabled: true, business: @b1 )
 
 #
 #@b1 = Business.create(name: 'Mc Donalds', email: 'mcdonalds@gmail.com', password: '123', address: 'Logo ali', website: 'http://mcdonalds.com', category: 'Fast Food')
