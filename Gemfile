@@ -1,3 +1,8 @@
+if RUBY_VERSION =~ /1.9/
+  Encoding.default_external = Encoding::UTF_8
+  Encoding.default_internal = Encoding::UTF_8
+end
+
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.3'
@@ -16,12 +21,14 @@ end
 gem 'jquery-rails'
 
 gem 'devise'
+gem 'fb_graph'
 
 gem 'omniauth-facebook'
 
 gem "friendly_id", "~> 4.0.1"
 gem 'execjs'
 
+gem 'lazy_high_charts'
 
 group :development do
 	gem 'sqlite3'

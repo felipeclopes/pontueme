@@ -1,48 +1,62 @@
-<div class="account-container">
-  
-  <div class="content clearfix">
+<div id="page-title">
+
+	<div id="page-title-inner">
+
+		<!-- start: Container -->
+		<div class="container">
+
+			<h2><i class="ico-stats ico-white"></i>Usuário</h2>
+
+		</div>
+		<!-- end: Container  -->
+
+	</div>	
+
+</div>
+
+<div class="wrapper">
+	
+	<div class="container">
+		
+		<div class="span4 offset4">
+	
+			<div class="title"><h1>Entrar</h1></div>
+
+			<!-- start: Contact Form -->
+				<div id="contact-form">
     
-    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-    
-      <h1>Entrar</h1>		
+			    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
       
-      <div class="login-fields">
+			      <div class="login-fields">
         
-        <p>Entrar com sua conta registrada:</p>
+			        <p>Entrar com sua conta registrada:</p>
         
-        <div class="field">
-          <label for="email">Email:</label>
-          <%= f.email_field :email, :class => 'login username-field' %>
-        </div> <!-- /field -->
+			        <div class="field">
+			          <label for="email">Email:</label>
+			          <%= f.email_field :email, :class => 'login username-field' %>
+			        </div> <!-- /field -->
         
-        <div class="field">
-          <label for="senha">Senha:</label>
-          <%= f.password_field :password, :class => 'login password-field' %>
-        </div> <!-- /password -->
+			        <div class="field">
+			          <label for="senha">Senha:</label>
+			          <%= f.password_field :password, :class => 'login password-field' %>
+			        </div> <!-- /password -->
         
-      </div> <!-- /login-fields -->
+					<%= f.hidden_field :password_changed, :value=>'true' %>
+
+			      </div> <!-- /login-fields -->
       
-      <div class="login-actions">
+			      <div class="login-actions">
                   
-        <%= f.submit "Entrar", :class => "button btn btn-warning btn-large" %>
+			        <%= f.submit "Entrar", :class => "button btn btn-large" %>
         
-      </div> <!-- .actions -->
+			      </div> <!-- .actions -->
       
-    <% end %>
+			    <% end %>
     
-  </div> <!-- /content -->
+			  </div> <!-- /contact-form -->
   
-</div> <!-- /account-container -->
+		</div> <!-- /span4 -->
+		
+	</div> <!-- /container -->
 
-<div class="login-extra">
-  Não tem uma conta? Clique em <%= link_to "Registrar", new_user_registration_path %>
-</div> <!-- /login-extra -->
-
-<script src="../assets/theme/jquery-1.7.2.min.js"></script>
-
-<script src="../assets/theme/bootstrap.js"></script>
-<script src="../assets/theme/base.js"></script>
-
-<script src="../assets/theme/signin.js"></script>
-
-
+</div> <!-- /wrapper -->

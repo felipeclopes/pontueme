@@ -1,40 +1,58 @@
-<div class="account-container">
-  
-  <div class="content clearfix">
-  
-  <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  
-    <h1>Entrar</h1>
-    
-    <div class="login-fields">
-        
-        <p>Entrar com seu negócio registrado:</p>
-        
-        <div class="field">
-          <label for="email">Nome:</label>
-          <%= f.text_field :email, :class => 'login username-field'%>
-        </div>
+<div id="page-title">
 
-        <div class="field">
-          <label for="senha">Senha:</label>
-          <%= f.password_field :password, :class => 'login password-field' %>
-        </div> <!-- /password -->
-        
-      </div> <!-- /login-fields -->
-      
-      <div class="login-actions">                  
-        <%= f.submit "Entrar", :class => "button btn btn-warning btn-large" %>        
-      </div> <!-- .actions -->
-      
-  <% end %>
+	<div id="page-title-inner">
 
-</div> <!-- /content -->
-  
-</div> <!-- /account-container -->
+		<!-- start: Container -->
+		<div class="container">
 
-<script src="../assets/theme/jquery-1.7.2.min.js"></script>
+			<h2><i class="ico-stats ico-white"></i>Estabelecimento</h2>
 
-<script src="../assets/theme/bootstrap.js"></script>
-<script src="../assets/theme/base.js"></script>
+		</div>
+		<!-- end: Container  -->
 
-<script src="../assets/theme/signin.js"></script>
+	</div>	
+
+</div>
+
+<div class="wrapper">
+	
+	<div class="container">
+		
+		<div class="span4 offset4">
+	
+			<div class="title"><h1>Entrar</h1></div>
+
+			<!-- start: Contact Form -->
+			<div id="contact-form">
+ 
+				<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+
+				  <div class="login-fields">
+
+				      <p>Entrar com seu negócio registrado:</p>
+
+				      <div class="field">
+				        <label for="email">E-mail:</label>
+				        <%= f.text_field :email, :class => 'login username-field'%>
+				      </div>
+
+				      <div class="field">
+				        <label for="senha">Senha:</label>
+				        <%= f.password_field :password, :class => 'login password-field' %>
+				      </div> <!-- /password -->
+
+				    </div> <!-- /login-fields -->
+
+				    <div class="login-actions">                  
+				      <%= f.submit "Entrar", :class => "button btn btn-large" %>        
+				    </div> <!-- .actions -->
+
+				<% end %>
+
+			</div> <!-- /contact-form -->
+				
+		</div> <!-- /span4 -->	
+
+	</div> <!-- /container -->
+
+</div> <!-- /wrapper -->

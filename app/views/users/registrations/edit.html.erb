@@ -1,48 +1,68 @@
-<div class="account-container register">
-  
-  <div class="content clearfix">
-  
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|%>
+<div id="page-title">
 
-  <h1>Atualizar senha</h1>
-  
-  <div class="login-fields">
-        
-    <p>Atualize sua senha:</p>              
-    <%= devise_error_messages! %> 
+	<div id="page-title-inner">
 
-    <div class="field">
-      <label for="password">Senha:</label>
-        <%= f.password_field :password, :class => 'login', :placeholder => 'Senha'  %>   
-    </div>
+		<!-- start: Container -->
+		<div class="container">
 
-    <div class="field">
-      <label for="password_confirmation">Confirmacao:</label>
-        <%= f.password_field :password_confirmation, :class => 'login', :placeholder => 'Confirmação'  %>
-    </div>
+			<h2><i class="ico-stats ico-white"></i>Usuário</h2>
 
-    <div class="field">
-      <label for="current_password">Senha Atual:</label>
-        <%= f.password_field :current_password, :class => 'login', :placeholder => 'Senha Atual'  %>
-    </div>
+		</div>
+		<!-- end: Container  -->
 
-    <%= f.hidden_field :password_changed, :value=>'true' %>
+	</div>	
 
-    </div> <!-- /login-fields -->
-
-    <div class="login-actions">
-      <p><%= f.submit "Atualizar", :class => "button btn btn-primary btn-large" %></p>
-    </div> <!-- .actions -->
-
-  </div>
-  
-  <% end %>
-  
 </div>
 
-<script src="../assets/theme/jquery-1.7.2.min.js"></script>
+<div class="wrapper">
+	
+	<div class="container">
+		
+		<div class="span4 offset4">
+			
+			<!-- start: Contact Form -->
+			<div id="contact-form">
+   
+			    <%= devise_error_messages! %>
 
-<script src="../assets/theme/bootstrap.js"></script>
-<script src="../assets/theme/base.js"></script>
+  				<div class="title"><h1>Atualizar Senha</h1></div>
+  
+  					<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|%>
+        
+					    <p>Atualize sua senha:</p>              
+					    <%= devise_error_messages! %> 
 
-<script src="../assets/theme/signin.js"></script>
+					    <div class="field">
+					      <label for="current_password">Senha Atual:</label>
+					        <%= f.password_field :current_password, :class => 'login username-field', :placeholder => 'Senha Atual'  %>
+					    </div>
+
+					    <div class="field">
+					      <label for="password">Senha:</label>
+					        <%= f.password_field :password, :class => 'login username-field', :placeholder => 'Senha'  %>   
+					    </div>
+
+					    <div class="field">
+					      <label for="password_confirmation">Confirmação:</label>
+					        <%= f.password_field :password_confirmation, :class => 'login username-field', :placeholder => 'Confirmação'  %>
+					    </div>
+
+					    <%= f.hidden_field :password_changed, :value=>'true' %>
+
+					    </div> <!-- /login-fields -->
+
+						<div class="login-actions">
+
+			        		<%= f.submit "Registrar", :class => "button btn btn-large" %>
+
+			      		</div> <!-- .actions -->
+
+					<% end %>
+
+			  </div> <!-- /contact-form -->
+
+		</div> <!-- /span4 -->
+
+	</div> <!-- /container -->
+
+</div> <!-- /wrapper -->

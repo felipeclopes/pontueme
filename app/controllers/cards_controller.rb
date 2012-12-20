@@ -1,6 +1,6 @@
 # encoding: utf-8
 class CardsController < ApplicationController
-  before_filter :authenticate_user!
+  #before_filter :authenticate_user!
 
   def index
   	@cards = Card.find_all_by_user_id(current_user)
@@ -12,14 +12,11 @@ class CardsController < ApplicationController
   	if card && card.user.nil?
   		current_user.add_card(card)
   	else
-      respond_to do |format|
-        format.html  { redirect_to cards_path, :notice => 'O cartão não existe ou já está cadastrado' }
-      end
-      return;
+  	  return render :status => 401, :json => { :message => "O cartão não existe ou já está cadastrado"}
     end      
 
     respond_to do |format|
-        format.html  { redirect_to cards_path, :notice => 'O cartão foi cadastrado com sucesso' }
-    end
+	    format.js { render json: { :card => card, :points => card.card_points.sum("points") } , content_type: 'text/json' }
+	  end
   end
 end

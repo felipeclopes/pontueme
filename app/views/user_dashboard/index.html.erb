@@ -1,185 +1,185 @@
-<br />
+<div id="page-title">
 
-<div class="main">
-	<div class="main-inner">
+	<div id="page-title-inner">
+
+		<!-- start: Container -->
 		<div class="container">
 
-			<% unless current_user.password_changed %>
+			<h2><i class="ico-stats ico-white"></i>Resumo</h2>
 
-			<div class="hero-unit">
-				<div class="row">
-					<h2>Nunca mudou sua senha? Mude <%= link_to "aqui", edit_user_registration_path, :html => {:class => 'h1-pontueme' } %><h2>
-				</div>
-			</div>
-
-			<% end %>
-
-			<% unless @checkins.count > 0  %>
-
-			<div class="hero-unit">
-				<div class="row">
-					<h2>Você ainda não pontuou em nenhum estabalecimento credenciado ao <span class='h1-pontueme'>Pontue.me</span><h2>
-				</div>
-			</div>
-
-			<% else %>
-
-			<div class="row">
-				<div class="span6">
-					<div class="widget">
-						<div class="widget-header">
-							<i class="icon-signal"></i>
-							<h3>Geral</h3>
-						</div>
-						<div class="widget-content">
-							<div class="stats">
-								<div class="stat">
-									<span class="stat-value"><%= @checkins.sum{|c| c.points}.presence || 0 %></span>
-									Total
-								</div>
-								<div class="stat">
-									<span class="stat-value"><%= @checkins.select{|c| c.created_at.to_date > 7.days.ago.to_date}.map{|c| c.points}.sum.presence || 0 %></span>
-									7 dias
-								</div>
-								<div class="stat">
-									<span class="stat-value"><%= @checkins.select{|c| c.created_at.to_date > Date.today}.map{|c| c.points}.sum.presence || 0 %></span>
-									Hoje
-								</div>
-							</div>
-							
-							<div id="chart-stats" class="stats">
-								<div class="stat stat-chart">
-									<div id="donut-chart" class="chart-holder"></div>
-								</div>
-								<div class="stat stat-time">
-									<span class="stat-value"><%= @ubps.map{|c| c.points}.sum.presence || 0 %></span>
-									Total de pontos
-								</div> <!-- /substat -->
-							</div>
-						</div>
-					</div>
-					
-					<div class="widget">
-						<div class="widget-header">
-							<i class="icon-th-list"></i>
-							<h3>Últimos Pontos</h3>
-						</div>
-						<div class="widget-content">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Estabelecimento</th>
-										<th>Hora</th>
-										<th>Pontos</th>
-									</tr>
-								</thead>
-								<tbody>
-									<% @checkins.take(10).each do |c| %>
-										<tr>
-											<td><%= c.business.name %></td>
-											<td><%= c.created_at %></td>
-											<td><%= c.points %></td>
-										</tr>
-									<% end %>
-								</tbody>								
-							</table>							
-						</div>
-					</div>
-
-				</div>
-				<div class="span6">
-				
-					<div class="widget">
-						<div class="widget-header">
-							<i class="icon-th-list"></i>
-							<h3>Estabelecimentos Acessados</h3>
-						</div>
-						<div class="widget-content">							
-							<div class="shortcuts">
-								<% @ubps.each do |b| %>									
-									<a href="/businesses/<%= b.business.id%>" class="shortcut">									
-										<i class="shortcut-icon icon-list-alt"></i>										
-										<span class="shortcut-label"><%= b.business.name %></span>
-										Pontos: <%= b.points %>
-									</a>
-								<% end %>
-							</div>							
-						</div>
-					</div>
-
-					<% if @coupons.count > 0  %>
-					
-					<div class="widget">
-						<div class="widget-header">
-							<i class="icon-th-list"></i>
-							<h3>Benefícios Trocados</h3>
-						</div>
-						<div class="widget-content">
-							<table class="table table-striped">
-								<thead>
-									<tr>
-										<th>Estabelecimento</th>
-										<th>Benefício</th>
-										<th>Código</th>
-										<th></th>
-									</tr>
-								</thead>
-								<tbody>
-									<% @coupons.each do |c| %>
-										<tr>
-											<td><%= c.benefit.business.name %></td>
-											<td><%= c.benefit.name %></td>
-											<td><%= c.code %></td>
-											<td><a href='/coupons/show/<%= c.id %>'>Ver</a></td>
-										</tr>
-									<% end %>
-								</tbody>								
-							</table>							
-						</div>
-					</div>
-
-					<% end %>
-				
-				</div>
-			</div>
-
-			<% end %>
 		</div>
-	</div>
+		<!-- end: Container  -->
+
+	</div>	
+
 </div>
 
-<script src="../assets/theme/jquery-1.7.2.min.js"></script>
-<script src="../assets/theme/excanvas.min.js"></script>
+<div class="wrapper">
+	
+	<div class="container">
 
-<script src="../assets/theme/jquery.flot.js"></script>
-<script src="../assets/theme/jquery.flot.pie.js"></script>
-<script src="../assets/theme/jquery.flot.orderBars.js"></script>
-<script src="../assets/theme/jquery.flot.resize.js"></script>
+		<% unless current_user.password_changed %>
 
-<script src="../assets/theme/bootstrap.js"></script>
-<script src="../assets/theme/base.js"></script>
+		<div class="hero-unit">
+			<h2>Nunca mudou sua senha? Mude <%= link_to "aqui", edit_user_registration_path, :html => {:class => 'h1-pontueme' } %><h2>
+		</div>
 
-<script type="text/javascript">
+		<% end %>
 
-$(function () {
+		<% unless @checkins.count > 0  %>
 
-	var data = [];
-	data[0] = {label: "Pontuados", data: <%= @checkins.count > 0 ? @checkins.map{|c| c.points}.inject{|sum,x| sum + x } : 0 %>};
-	data[1] = {label: "Resgatados", data: <%= @coupons.count > 0 ? @coupons.map{|c| c.points}.inject{|sum,x| sum + x } : 0 %>};
+		<div class="hero-unit">
+				<h2>Você ainda não pontuou em nenhum estabalecimento credenciado ao <span class='h1-pontueme'>Pontue.me</span><h2>
+		</div>
 
-	$.plot($("#donut-chart"), data,
-	{
-		colors: ["#F90", "#222"],
-			series: {
-				pie: { 
-					innerRadius: 0.5,
-					show: true
-				}
-			}
-	});
-});
+		<% else %>
 
-</script>
+		<div class="row">
+			
+			<div class="span8">
+				
+				<div id="something">
+					
+					<div class="title">
+						<h3>Pontos recentes</h3>
+					</div>
+					
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>Estabelecimento</th>
+								<th>Hora</th>
+								<th>Pontos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% @checkins.take(10).each do |c| %>
+								<tr>
+									<td><%= c.business.name %></td>
+									<td><%= c.created_at %></td>
+									<td><%= c.points %></td>
+								</tr>
+							<% end %>
+						</tbody>								
+					</table>
+					
+				</div>
+				
+				<!-- close: something -->
+			
+			</div>
+			
+			<!-- close: span8 -->
+			
+			<!-- open: span4 -->
+			<div class="span4">
+				
+				<!-- open: sidebar -->
+				<div id="sidebar">
+					
+					<div class="title"><h3>Compartilhe!</h3></div>
+					
+					<%= flash[:facebook] if flash[:facebook] %>
+			
+					<% if !(current_user.social_authentications.count > 0) %>
+					
+					<p>
+						Conecte-se ao Facebook e compartilhe com seus amigos sempre que trocar seus pontos por um benefício!
+					</p>
+					
+					<a class="zocial facebook" href="/users/auth/facebook">Conecte-se ao Facebook</a>
 
-<%= render :partial=>"shared/footer" %>
+					<% else %>
+					
+					<p>
+						Você está conectado ao Facebook, toda vez que trocar seus pontos por um benefício, automaticamente ira compartilhar com seus amigos a vantagem de ser fiel a um de seus estabelecimentos preferidos!
+					</p>
+					
+					<% end %>	
+					
+				</div>
+				
+			</div>
+			<!-- close: span4 -->
+								
+			<!-- open: span4 -->								
+			<div class="span4">
 
+				<!-- open: sidebar -->
+				<div id="sidebar">
+					
+					<div class="title"><h3>Estabelecimentos visitados</h3></div>
+					<ul class="progress-bar">
+						
+						<% @ubps.each do |b| %>
+						
+							<li>
+				            	<a href="/businesses/<%= b.business.id %>" >
+									<h3><%= b.business.name %> ( <%= b.points %> pontos )</h3>
+								</a>
+				            	<div class="meter"><span style="width: <%= b.points %>px;"></span></div><!-- Edite width here -->
+				          	</li>
+						<% end %>
+			      	</ul>
+					
+				</div>
+				<!-- close: sidebar -->
+								
+			</div>
+			
+			<!-- close: span4 -->
+			
+		</div>
+		
+		<!-- close:row -->
+		<!-- open:row -->
+
+		<div class="row">
+			
+			<div class="span8">
+				
+				<div id="add-card-region">
+					
+					<div class="alert">
+						<button type="button" class="close" data-dismiss="alert">×</button>
+					</div>
+					
+					<div class="title">
+						<h3>Cartões Cadastrados</h3>
+					</div>
+					
+					<%= form_tag url_for(:controller => 'cards', :action => 'create'), :remote => true %>
+					<table class="table table-striped" id='card-list'>
+						<thead>
+							<tr>
+								<th>Cartão</th>
+								<th>Pontos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<% current_user.cards.each do |c| %>
+								<tr>
+									<td><%= c.code %></td>
+									<td><%= c.card_points.sum("points") %></td>
+								</tr>
+							<% end %>							
+							<tr>
+								<td><%= text_field_tag "code", nil, :class => 'input-large'%></td>
+								<td><button class="button btn btn-primary btn-large" id="add-card">Adicionar</button></td>
+							</tr>
+						</tbody>								
+					</table>
+					
+				</div>
+				
+				<!-- close: something -->
+			
+			</div>
+		
+	</div>
+	
+	<% end %>
+	
+</div>
+
+<%= render "shared/footer" %>

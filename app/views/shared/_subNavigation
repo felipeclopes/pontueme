@@ -3,7 +3,7 @@
 		<div class="container">
 			<ul class="mainnav">				
 				<li class="active">
-					<a href="/user_dashboard/index">
+					<a href="/profile">
 						<i class="icon-home"></i>
 						<span>Pontuação</span>
 					</a>

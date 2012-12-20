@@ -8,49 +8,56 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Coupon.delete_all
-Benefit.delete_all
-UserBusinessPoints.delete_all
-CardBusinessPoints.delete_all
-Card.delete_all
-Business.delete_all
-User.delete_all
+#Coupon.delete_all
+#Benefit.delete_all
+#UserBusinessPoints.delete_all
+#CardBusinessPoints.delete_all
+#Card.delete_all
+#Business.delete_all
+#User.delete_all
 
-@b1 = Business.create(name: 'Mc Donalds', email: 'mcdonalds@gmail.com', password: '123', address: 'Logo ali', website: 'http://mcdonalds.com', category: 'Fast Food')
-@bn11 = Benefit.create(name: 'BigMc Triplo', description: 'Ganhe um BigMc com 3 hamburguers', checkins_needed: 5, enabled: true, business: @b1 )
-@bn12 = Benefit.create(name: 'Seu Mc', description: 'Crie um hamburger personalisado com qualquer ingrediente ja disponivel na cozinha do McDonalds', checkins_needed: 10, enabled: true, business: @b1 )
-@bn13 = Benefit.create(name: 'Mc Festa', description: 'Escolha um combo para voce e mais quatro amigos', checkins_needed: 20, enabled: true, business: @b1 )
-@bn11 = Benefit.create(name: 'BigMc Triplo', description: 'Ganhe um BigMc com 3 hamburguers', checkins_needed: 5, enabled: true, business: @b1 )
+@b1 = Business.create(name: 'PitiNat', email: 'pilade@freitasemoraes.com.br', password: '_p1t1n4t', address: 'Rua Sete de Setembro - Taquari, RS', website: 'http://www.facebook.com/pilade.moraes.1', category: 'Moda & Vestuário')
+@bn11 = Benefit.create(name: 'Combine um acessório', description: 'Qualquer acessório com 25% de desconto para combinar com sua compra', checkins_needed: 1, enabled: true, business: @b1 )
+@bn12 = Benefit.create(name: '3 por 5', description: 'Troque 3 pontos por 5% de desconto em qualquer produto da loja', checkins_needed: 3, enabled: true, business: @b1 )
+@bn13 = Benefit.create(name: 'Seja uma modelo PitiNat', description: 'Tire 05 fotos utilizando qualquer produto de nossa loja.', checkins_needed: 10, enabled: true, business: @b1 )
+@bn14 = Benefit.create(name: 'Sinta-se Azul', description: 'Troque seus pontos por 15% de desconto em qualquer jeans', checkins_needed: 15, enabled: true, business: @b1 )
+
+#
+#@b1 = Business.create(name: 'Mc Donalds', email: 'mcdonalds@gmail.com', password: '123', address: 'Logo ali', website: 'http://mcdonalds.com', category: 'Fast Food')
+#@bn11 = Benefit.create(name: 'BigMc Triplo', description: 'Ganhe um BigMc com 3 hamburguers', checkins_needed: 5, enabled: true, business: @b1 )
 #@bn12 = Benefit.create(name: 'Seu Mc', description: 'Crie um hamburger personalisado com qualquer ingrediente ja disponivel na cozinha do McDonalds', checkins_needed: 10, enabled: true, business: @b1 )
 #@bn13 = Benefit.create(name: 'Mc Festa', description: 'Escolha um combo para voce e mais quatro amigos', checkins_needed: 20, enabled: true, business: @b1 )
-
-@b2 = Business.create(name: '21212', email: 'highspeed@21212.com', password: 'h1ghsp33d', address: 'Botafogo  Rio de Janeiro - RJ', website: 'http://21212.com', category: 'Startups')
-@bn21 = Benefit.create(name: 'Mentor', description: 'Escolha um mentor da 21212 para continuar ajudando sua Startup, mesmo após o fim do ciclo de aceleração', checkins_needed: 30, enabled: true, business: @b2 )
-@bn22 = Benefit.create(name: 'Sócio', description: 'Além da mentoria você pode escolher um dos sócios da 21212 para trabalhar na sua Startup', checkins_needed: 60, enabled: true, business: @b2 )
-
-@c1 = Card.create(code:'code1')
-@c2 = Card.create(code:'code2')
-
-@u1 = User.create(email: 'felipelopes10@gmail.com', password: '123')
-
-businesses = [@b1, @b2]
-users = [@u1]
-cards = [@c1, @c2]
-
-dates = (Date.today.at_beginning_of_month..Date.today)
-
-businesses.each do |b|
-	users.each do |u|
-		50.times do 
-			Checkin.create(business: b, user: u, points: 1)
-		end
-	end
-end
-
-businesses.each do |b|
-	cards.each do |c|
-		20.times do 
-			Checkin.create(business: b, card: c, points: 1)
-		end
-	end
-end
+#@bn11 = Benefit.create(name: 'BigMc Triplo', description: 'Ganhe um BigMc com 3 hamburguers', checkins_needed: 5, enabled: true, business: @b1 )
+##@bn12 = Benefit.create(name: 'Seu Mc', description: 'Crie um hamburger personalisado com qualquer ingrediente ja disponivel na cozinha do McDonalds', checkins_needed: 10, enabled: true, business: @b1 )
+##@bn13 = Benefit.create(name: 'Mc Festa', description: 'Escolha um combo para voce e mais quatro amigos', checkins_needed: 20, enabled: true, business: @b1 )
+#
+#@b2 = Business.create(name: '21212', email: 'highspeed@21212.com', password: 'h1ghsp33d', address: 'Botafogo  Rio de Janeiro - RJ', website: 'http://21212.com', category: 'Startups')
+#@bn21 = Benefit.create(name: 'Mentor', description: 'Escolha um mentor da 21212 para continuar ajudando sua Startup, mesmo após o fim do ciclo de aceleração', checkins_needed: 30, enabled: true, business: @b2 )
+#@bn22 = Benefit.create(name: 'Sócio', description: 'Além da mentoria você pode escolher um dos sócios da 21212 para trabalhar na sua Startup', checkins_needed: 60, enabled: true, business: @b2 )
+#
+#@c1 = Card.create(code:'code1')
+#@c2 = Card.create(code:'code2')
+#
+#@u1 = User.create(email: 'felipelopes10@gmail.com', password: '123')
+#
+#businesses = [@b1, @b2]
+#users = [@u1]
+#cards = [@c1, @c2]
+#
+#dates = (Date.today.at_beginning_of_month..Date.today)
+#
+#businesses.each do |b|
+#	users.each do |u|
+#		50.times do 
+#			Checkin.create(business: b, user: u, points: 1)
+#		end
+#	end
+#end
+#
+#businesses.each do |b|
+#	cards.each do |c|
+#		20.times do 
+#			Checkin.create(business: b, card: c, points: 1)
+#		end
+#	end
+#end
