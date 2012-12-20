@@ -25,20 +25,6 @@
 		</div>
 
 		<% end %>
-		
-		<% if !(current_user.social_authentications.count > 0) %>
-		
-		<div class="hero-unit">
-			<h2>Conecte-se ao <%= link_to "Facebook", "/users/auth/facebook", :html => {:class => 'h1-pontueme' } %> e compartilhe com seus amigos!<h2>
-		</div>
-		
-		<% elsif flash[:facebook] %>
-		
-		<div class="hero-unit">
-			<h2><%= flash[:facebook] %></h2>
-		</div>
-			
-		<% end %>
 
 		<% unless @checkins.count > 0  %>
 
@@ -84,8 +70,39 @@
 			</div>
 			
 			<!-- close: span8 -->
+			
 			<!-- open: span4 -->
-						
+			<div class="span4">
+				
+				<!-- open: sidebar -->
+				<div id="sidebar">
+					
+					<div class="title"><h3>Compartilhe!</h3></div>
+					
+					<%= flash[:facebook] if flash[:facebook] %>
+			
+					<% if !(current_user.social_authentications.count > 0) %>
+					
+					<p>
+						Conecte-se ao Facebook e compartilhe com seus amigos sempre que trocar seus pontos por um benefício!
+					</p>
+					
+					<a class="zocial facebook" href="/users/auth/facebook">Conecte-se ao Facebook</a>
+
+					<% else %>
+					
+					<p>
+						Você está conectado ao Facebook, toda vez que trocar seus pontos por um benefício, automaticamente ira compartilhar com seus amigos a vantagem de ser fiel a um de seus estabelecimentos preferidos!
+					</p>
+					
+					<% end %>	
+					
+				</div>
+				
+			</div>
+			<!-- close: span4 -->
+								
+			<!-- open: span4 -->								
 			<div class="span4">
 
 				<!-- open: sidebar -->
