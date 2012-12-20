@@ -8,7 +8,8 @@
 
 $(document).ready ->
 	pathname = window.location.pathname.split('/')
-	controller = pathname[pathname.length - 2] 				#Parses the controller from the url
-	action = pathname[pathname.length - 1].split('?')[0] 	#Parses the action from the url
+	
+	controller = pathname[1] 				#Parses the controller from the url
+		
 	if window.urlFilter[controller] && controller != ""
 		window.urlFilter[controller]()								#Executes function created in the child page

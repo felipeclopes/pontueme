@@ -1,16 +1,16 @@
+#encoding: utf-8
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def facebook
 		auth = request.env["omniauth.auth"]
     if current_user.apply_facebook (auth)
       flash[:facebook] = "Autenticado com sucesso!"
     end
-    redirect_to user_dashboard_index_path
+    redirect_to profile_url
 	end
 
 	def failure
-		puts request.env['omniauth.error']
-    puts request.env['omniauth.error.type']
-    puts request.env['omniauth.error.strategy']
+		flash[:facebook] = "Falha ao autenticar o usuário ao Facebook!"
+		redirect_to profile_url
 	end
 
 	def passthru

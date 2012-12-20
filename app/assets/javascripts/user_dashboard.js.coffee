@@ -3,7 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 window.urlFilter = {}
-window.urlFilter.user_dashboard = ->
+window.urlFilter.profile = ->
 		$('#add-card').click (e) ->
 			e.preventDefault()
 			$.ajax '/cards/create',
