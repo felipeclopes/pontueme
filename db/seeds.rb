@@ -16,11 +16,11 @@
 #Business.delete_all
 #User.delete_all
 
-@b1 = Business.create(name: 'PitiNat', email: 'pilade@freitasemoraes.com.br', password: '_p1t1n4t', address: 'Rua Sete de Setembro - Taquari, RS', website: 'http://www.facebook.com/pilade.moraes.1', category: 'Moda & Vestuário')
-@bn11 = Benefit.create(name: 'Combine um acessório', description: 'Qualquer acessório com 25% de desconto para combinar com sua compra', checkins_needed: 1, enabled: true, business: @b1 )
-@bn12 = Benefit.create(name: '3 por 5', description: 'Troque 3 pontos por 5% de desconto em qualquer produto da loja', checkins_needed: 3, enabled: true, business: @b1 )
-@bn13 = Benefit.create(name: 'Seja uma modelo PitiNat', description: 'Tire 05 fotos utilizando qualquer produto de nossa loja.', checkins_needed: 10, enabled: true, business: @b1 )
-@bn14 = Benefit.create(name: 'Sinta-se Azul', description: 'Troque seus pontos por 15% de desconto em qualquer jeans', checkins_needed: 15, enabled: true, business: @b1 )
+@b1 = Business.create(name: 'Petit Pet Boutique', email: 'petit@petitpetboutique.com.br', password: '_p3t1t', address: 'Av. Carlos Gomes 1325, Porto Alegre - RS', website: 'http://www.petitpetboutique.com.br/', category: 'Pet Shop')
+@bn11 = Benefit.create(name: 'Seu pet uma celebridade', description: 'Colocamos uma foto do seu pet em nosso álbum do facebook e no nosso mural', checkins_needed: 5, enabled: true, business: @b1 )
+@bn12 = Benefit.create(name: 'Agradinho', description: 'Agrade seu pet com um delicioso biscoito', checkins_needed: 10, enabled: true, business: @b1 )
+@bn13 = Benefit.create(name: 'Ajude outros pets', description: 'Pets precisam de ajuda, escolha uma ONG para receber doação de ração', checkins_needed: 100, enabled: true, business: @b1 )
+@bn14 = Benefit.create(name: 'Dono merece agrado', description: 'Passe 3 dias de pernas pra cima na Bahia - http://www.pousadaverdeagua.com.br', checkins_needed: 600, enabled: true, business: @b1 )
 
 #
 #@b1 = Business.create(name: 'Mc Donalds', email: 'mcdonalds@gmail.com', password: '123', address: 'Logo ali', website: 'http://mcdonalds.com', category: 'Fast Food')
