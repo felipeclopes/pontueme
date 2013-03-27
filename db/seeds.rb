@@ -1,13 +1,5 @@
 # encoding: UTF-8
 
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
 #Coupon.delete_all
 #Benefit.delete_all
 #UserBusinessPoints.delete_all
@@ -22,7 +14,6 @@
 @bn13 = Benefit.create(name: 'Ajude outros pets', description: 'Pets precisam de ajuda, escolha uma ONG para receber doação de ração', checkins_needed: 100, enabled: true, business: @b1 )
 @bn14 = Benefit.create(name: 'Dono merece agrado', description: 'Passe 3 dias de pernas pra cima na Bahia - http://www.pousadaverdeagua.com.br', checkins_needed: 600, enabled: true, business: @b1 )
 
-#
 #@b1 = Business.create(name: 'Mc Donalds', email: 'mcdonalds@gmail.com', password: '123', address: 'Logo ali', website: 'http://mcdonalds.com', category: 'Fast Food')
 #@bn11 = Benefit.create(name: 'BigMc Triplo', description: 'Ganhe um BigMc com 3 hamburguers', checkins_needed: 5, enabled: true, business: @b1 )
 #@bn12 = Benefit.create(name: 'Seu Mc', description: 'Crie um hamburger personalisado com qualquer ingrediente ja disponivel na cozinha do McDonalds', checkins_needed: 10, enabled: true, business: @b1 )
