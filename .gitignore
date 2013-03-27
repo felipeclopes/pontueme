@@ -17,3 +17,7 @@
 /naosite/*
 /Gemfile.lock
 .webbynode/*
+
+/app/views/.DS_Store
+/public/.DS_Store
+/public/assets/.DS_Store
