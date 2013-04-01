@@ -9,6 +9,7 @@ Pontueme::Application.routes.draw do
   resource :coupons, :only => [:show]
   resource :contact_forms, :only => [:create]
   resource :cards, :only => [:index, :create]
+  resources :benefits
   
   match "profile" => "user_dashboard#index"
   match "dashboard" => "business_dashboard#index"

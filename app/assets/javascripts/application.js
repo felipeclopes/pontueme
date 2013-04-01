@@ -7,4 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require highcharts
+//= require knockout
+//= require knockout.mapping
+//= require pontueme
 //= require_tree

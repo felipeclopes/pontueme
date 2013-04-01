@@ -1,0 +1,91 @@
+<div id="page-title">
+
+  <div id="page-title-inner">
+
+    <!-- start: Container -->
+    <div class="container">
+
+      <h2><i class="ico-stats ico-white"></i>Benefícios</h2>
+
+    </div>
+    <!-- end: Container  -->
+
+  </div>  
+
+</div>
+
+<div class="wrapper">
+  
+  <div class="container">
+          
+        <div class="span8 offset2">
+
+          <div data-bind="visible: benefits().length > 0">
+
+            <div class="title"><h3>Benefícios cadastrados</h3></div>
+
+            <table class="table table-striped table-bordered" id='card-list'>
+              <thead>
+                <tr>
+                  <th><b><h3>Pontos</h3></b></th>
+                  <th><b><h3>Nome</h3></b></th>
+                  <th><b><h3>Descrição</h3></b></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody data-bind="foreach: benefits">
+                  <tr>
+                    <td><label data-bind="text: checkins_needed"></label></td>
+                    <td><label data-bind="text: name"></label></td>
+                    <td><label data-bind="text: description"></label></td>
+                    <td><a href="#" data-bind="click: $parent.removeBenefit">Remover</a></td>
+                  </tr>
+              </tbody>                
+            </table>
+
+          </div>
+
+          <div class="title"><h3>Novo Benefício</h3></div>
+
+          <fieldset>
+              <div class="clearfix">
+                <label for="checkins_needed"><span>Pontos:</span></label>
+                <div class="input">
+                  <input data-bind="value: newBenefit().checkins_needed" tabindex="1" size="5"></input>
+                </div>
+              </div>
+
+              <div class="clearfix">
+                <label for="nome"><span>Nome:</span></label>
+                <div class="input">
+                  <input data-bind="value: newBenefit().name" tabindex="1" size="25" class="input-xlarge"></input>
+                </div>
+              </div>
+
+              <div class="clearfix">
+                <label for="descrição"><span>Descrição:</span></label>
+                <div class="input">
+                  <textarea data-bind="value: newBenefit().description" tabindex="1" size="25" rows="4" class="input-xlarge"></textarea>
+                </div>
+              </div>
+
+              <div class="clearfix">
+                <button data-bind="click: save">Save</button>
+              </div>
+          </fieldset>
+            
+        </div> <!-- /span6 -->
+  
+  </div> <!-- /container -->
+  
+</div> <!-- /wrapper -->
+
+<%= render "shared/footer" %>
+
+<script type="text/javascript">
+jQuery(function($){
+  // Create the viewModel with prefilled data
+  window.viewModel = new Pontueme.BenefitsViewModel();
+  ko.applyBindings(window.viewModel); // And bind everything
+});
+</script>

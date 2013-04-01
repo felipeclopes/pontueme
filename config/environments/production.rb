@@ -69,6 +69,10 @@ Pontueme::Application.configure do
     :password             => ' P)ntu3m3',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
+
+  config.default_url_host = "localhost"
+  config.default_url_port = nil
+  config.root_url = config.default_url_host + ((config.default_url_port.nil?) ? "" : ":" + config.default_url_port.to_s)
     
   config.encoding = Encoding::UTF_8
 end

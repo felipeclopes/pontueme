@@ -1,0 +1,2 @@
+module BenefitsControllerHelper
+end

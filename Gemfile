@@ -26,6 +26,13 @@ gem 'fb_graph'
 gem 'omniauth-facebook'
 
 gem "friendly_id", "~> 4.0.1"
+gem 'simple_form'
+
+gem "rails3_acts_as_paranoid", "~>0.1.4"
+
+# knowckout-rails + inherited_resources
+gem "knockoutjs-rails"
+
 gem 'execjs'
 
 gem 'lazy_high_charts'
