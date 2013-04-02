@@ -8,11 +8,11 @@
 #Business.delete_all
 #User.delete_all
 
-@b1 = Business.create(name: 'Petit Pet Boutique', email: 'petit@petitpetboutique.com.br', password: '_p3t1t', address: 'Av. Carlos Gomes 1325, Porto Alegre - RS', website: 'http://www.petitpetboutique.com.br/', category: 'Pet Shop')
-@bn11 = Benefit.create(name: 'Seu pet uma celebridade', description: 'Colocamos uma foto do seu pet em nosso álbum do facebook e no nosso mural', checkins_needed: 5, enabled: true, business: @b1 )
-@bn12 = Benefit.create(name: 'Agradinho', description: 'Agrade seu pet com um delicioso biscoito', checkins_needed: 10, enabled: true, business: @b1 )
-@bn13 = Benefit.create(name: 'Ajude outros pets', description: 'Pets precisam de ajuda, escolha uma ONG para receber doação de ração', checkins_needed: 100, enabled: true, business: @b1 )
-@bn14 = Benefit.create(name: 'Dono merece agrado', description: 'Passe 3 dias de pernas pra cima na Bahia - http://www.pousadaverdeagua.com.br', checkins_needed: 600, enabled: true, business: @b1 )
+@b1 = Business.create(name: 'BANX', email: 'fernando@swellskate.com.br', password: 'b4nx', address: 'Alameda Major Francisco Barcelos 127, Porto Alegre - RS', website: 'http://www.banx.com.br/', category: 'Restaurante')
+@bn11 = Benefit.create(name: 'Gele sua alma', description: 'Compartilhe um baldinho de 4 cervejas geladas por nossa conta', checkins_needed: 10, enabled: true, business: @b1 )
+@bn12 = Benefit.create(name: 'Torne seu sanduiche famoso', description: 'Adicione um sanduiche com seu nome em nosso menu por 1 mês', checkins_needed: 60, enabled: true, business: @b1 )
+@bn13 = Benefit.create(name: 'Desafie a chefia', description: 'Desafie no skate um dos sócios do BANX e tenha tudo registrado', checkins_needed: 100, enabled: true, business: @b1 )
+@bn14 = Benefit.create(name: 'Banda de verdade', description: 'Chame sua banda e suba no nosso palco para tocar sua música para todos', checkins_needed: 150, enabled: true, business: @b1 )
 
 #@b1 = Business.create(name: 'Mc Donalds', email: 'mcdonalds@gmail.com', password: '123', address: 'Logo ali', website: 'http://mcdonalds.com', category: 'Fast Food')
 #@bn11 = Benefit.create(name: 'BigMc Triplo', description: 'Ganhe um BigMc com 3 hamburguers', checkins_needed: 5, enabled: true, business: @b1 )
