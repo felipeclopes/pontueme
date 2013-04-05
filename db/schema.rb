@@ -11,13 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130328163705) do
+ActiveRecord::Schema.define(:version => 20130405000521) do
 
   create_table "benefits", :force => true do |t|
     t.string   "name"
     t.text     "description"
     t.integer  "checkins_needed"
-    t.boolean  "enabled"
     t.integer  "business_id"
     t.datetime "created_at"
     t.datetime "updated_at"
